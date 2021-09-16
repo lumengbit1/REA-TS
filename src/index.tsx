@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Hello from './components/Hello';
+import Hello from './containers/Hello';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { enthusiasm } from './reducers/index';
+import { StoreState } from './types/index';
+import { EnthusiasmAction } from './actions';
+
+const store = createStore<StoreState, EnthusiasmAction, unknown, unknown>(enthusiasm, {
+  enthusiasmLevel: 1,
+  languageName: 'TypeScript',
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <Hello name="TypeScript" enthusiasmLevel={10} />
+    <Provider store={store}>
+      <Hello />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
