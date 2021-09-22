@@ -3,7 +3,7 @@ import { StoreState } from '../types/index';
 import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM } from '../constants/index';
 
 const initialState: StoreState = {
-  languageName: '',
+  languageName: 'TypeScript',
   enthusiasmLevel: 1,
 };
 

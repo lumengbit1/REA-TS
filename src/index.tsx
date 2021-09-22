@@ -4,15 +4,13 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Hello from './containers/Hello';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
 import { enthusiasm } from './reducers/index';
 import { StoreState } from './types/index';
 import { EnthusiasmAction } from './actions';
 
-const store = createStore<StoreState, EnthusiasmAction, unknown, unknown>(enthusiasm, {
-  enthusiasmLevel: 1,
-  languageName: 'TypeScript',
-});
+const store = createStore<StoreState, EnthusiasmAction, unknown, unknown>(enthusiasm, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
