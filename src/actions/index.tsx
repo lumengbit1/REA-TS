@@ -26,12 +26,26 @@ export interface ResultsSuccessedInterface {
   payload: Results[];
 }
 
+export interface GetSavedInterface {
+  type: constants.GET_SAVED_TYPE;
+}
+
+export interface SavedLoadingInterface {
+  type: constants.SAVED_LOADING_TYPE;
+  payload: LoadingType;
+}
+
+export interface SavedSuccessedInterface {
+  type: constants.GET_SAVED_RESOLVED_TYPE;
+  payload: Results[];
+}
+
 export interface ResultsFailedInterface {
   type: constants.GET_REJECTED_TYPE;
   payload: Errors;
 }
 
-export type GETACTION = GetResultsInterface | ResultsLoadingInterface | ResultsSuccessedInterface | ResultsFailedInterface;
+export type GETACTION = GetResultsInterface | ResultsLoadingInterface | ResultsSuccessedInterface | ResultsFailedInterface | GetSavedInterface | SavedLoadingInterface | SavedSuccessedInterface;
 
 export function getResults(): GetResultsInterface {
   return {
@@ -53,6 +67,26 @@ export function getResultsSuccessed(params: Results[]): ResultsSuccessedInterfac
   }
 }
 
+export function getSaved(): GetSavedInterface {
+  return {
+    type: constants.GET_SAVED,
+  }
+}
+
+export function getSavedLoading(params: LoadingType): SavedLoadingInterface {
+  return {
+    type: constants.SAVED_LOADING,
+    payload: params,
+  }
+}
+
+export function getSavedSuccessed(params: Results[]): SavedSuccessedInterface {
+  return {
+    type: constants.GET_SAVED_RESOLVED,
+    payload: params,
+  }
+}
+
 export function getFailed(params: Errors): ResultsFailedInterface {
   return {
     type: constants.GET_REJECTED,
@@ -68,6 +102,18 @@ export const getResultsAction = () => (dispatch: Dispatch) => {
     .then((response) => {
       dispatch(getResultsLoading(false));
       return dispatch(getResultsSuccessed(response.data));
+    })
+    .catch((error) => dispatch(getFailed(error)));
+};
+
+export const getSavedAction = () => (dispatch: Dispatch) => {
+  dispatch(getSaved());
+  dispatch(getSavedLoading(true));
+
+  return axios.get<Results[]>(`${settings.SAVED_BASE_API_DOMAIN}`)
+    .then((response) => {
+      dispatch(getSavedLoading(false));
+      return dispatch(getSavedSuccessed(response.data));
     })
     .catch((error) => dispatch(getFailed(error)));
 };

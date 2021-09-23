@@ -39,6 +39,12 @@ export function reducer(state = newInitialState, action: GETACTION): NewStoreSta
       return produce(state, draft => { draft.results = action.payload });
     case constants.GET_REJECTED:
       return produce(state, draft => { draft.errors = action.payload });
+    case constants.GET_SAVED:
+      return state;
+    case constants.SAVED_LOADING:
+      return produce(state, draft => { draft.loading.results = action.payload });
+    case constants.GET_SAVED_RESOLVED:
+      return produce(state, draft => { draft.results = action.payload });
   }
   return state;
 }
