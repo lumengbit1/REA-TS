@@ -5,29 +5,29 @@ import { Dispatch } from 'redux';
 import settings from '../settings';
 
 export interface IncrementEnthusiasm {
-  type: constants.INCREMENT_ENTHUSIASM;
+  type: constants.INCREMENT_ENTHUSIASM_TYPE;
 }
 
 export interface DecrementEnthusiasm {
-  type: constants.DECREMENT_ENTHUSIASM;
+  type: constants.DECREMENT_ENTHUSIASM_TYPE;
 }
 
 export interface GetResultsInterface {
-  type: constants.GET_RESULTS;
+  type: constants.GET_RESULTS_TYPE;
 }
 
 export interface ResultsLoadingInterface {
-  type: constants.RESULTS_LOADING;
+  type: constants.RESULTS_LOADING_TYPE;
   payload: LoadingType;
 }
 
 export interface ResultsSuccessedInterface {
-  type: constants.GET_RESULTS_RESOLVED;
+  type: constants.GET_RESULTS_RESOLVED_TYPE;
   payload: Results[];
 }
 
 export interface ResultsFailedInterface {
-  type: constants.GET_REJECTED;
+  type: constants.GET_REJECTED_TYPE;
   payload: Errors;
 }
 
