@@ -15,3 +15,12 @@ export type GET_RESULTS_RESOLVED_TYPE = typeof GET_RESULTS_RESOLVED;
 
 export const GET_REJECTED = 'GET_REJECTED';
 export type GET_REJECTED_TYPE = typeof GET_REJECTED;
+
+export const GET_SAVED = 'GET_SAVED';
+export type GET_SAVED_TYPE = typeof GET_RESULTS;
+
+export const SAVED_LOADING = 'SAVED_LOADING';
+export type SAVED_LOADING_TYPE = typeof SAVED_LOADING;
+
+export const GET_SAVED_RESOLVED = 'GET_SAVED_RESOLVED';
+export type GET_SAVED_RESOLVED_TYPE = typeof GET_SAVED_RESOLVED;
