@@ -12,21 +12,25 @@ interface Agency {
   logo: string;
 }
 
-interface Results {
+export interface Results {
   price: string;
   id: string;
   mainImage: string;
   agency: Agency;
 }
 
-interface Loading {
-  saved: boolean,
-  results: boolean,
+export type LoadingType = boolean;
+
+export interface Loading {
+  saved: LoadingType,
+  results: LoadingType,
 }
+
+export type Errors = string;
 
 export interface NewStoreState {
   results: Results[],
   saved: Results[],
-  errors: string,
+  errors: Errors,
   loading: Loading,
 }

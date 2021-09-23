@@ -6,19 +6,19 @@ import Hello from './containers/Hello';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
-import { enthusiasm } from './reducers/index';
-import { StoreState } from './types/index';
-import { EnthusiasmAction } from './actions';
+import { reducer } from './reducers/index';
+import { NewStoreState } from './types/index';
+import { GETACTION } from './actions';
 
-const store = createStore<StoreState, EnthusiasmAction, unknown, unknown>(enthusiasm, applyMiddleware(thunk));
+const store = createStore<NewStoreState, GETACTION, unknown, unknown>(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Hello />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Provider store={store}>
+            <Hello />
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
