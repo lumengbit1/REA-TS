@@ -29,7 +29,7 @@ function Hello({ name, enthusiasmLevel = 1, onIncrement, onDecrement }: Props) {
 
   React.useEffect(() => {
     dispatch(getResultsAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <HelloContainer className="hello">
